@@ -29,7 +29,7 @@ from homeassistant.const import (
     STATE_PLAYING, STATE_OFF, STATE_STANDBY, STATE_UNKNOWN)
 import homeassistant.helpers.config_validation as cv
 
-REQUIREMENTS = ['adb-homeassistant', 'androidtv']
+REQUIREMENTS = ['adb-homeassistant', 'https://github.com/caffeinatedMike/python-androidtv/archive/v1.0.zip#androidtv==1.0']
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -226,6 +226,8 @@ def adb_wrapper(func):
 
 def get_app_name(app_id):
     """Return the app name from its id and known apps."""
+    if app_id is None:
+        return None
     for app in KNOWN_APPS:
         if app in app_id:
             return KNOWN_APPS[app]
